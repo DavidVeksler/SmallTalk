@@ -12,7 +12,11 @@ namespace SmallTalk.Web.Controllers
         // GET: Profile
         public ActionResult Index()
         {
-            return View();
+            var db = new SmallTalkEntities();
+
+            var profiles = db.Profiles.Include("Language").Include("LanguageLevel").ToList();
+
+            return View("ProfileList",profiles);
         }
 
         // http://localhost:1667/Profile/Profile/1

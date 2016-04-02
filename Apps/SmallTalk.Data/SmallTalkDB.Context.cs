@@ -18,6 +18,7 @@ namespace SmallTalk.Data
         public SmallTalkEntities()
             : base("name=SmallTalkEntities")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

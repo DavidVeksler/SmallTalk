@@ -578,7 +578,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SmallTalkEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="SmallTalkEntities" annotation:LazyLoadingEnabled="false">
           <EntitySet Name="Languages" EntityType="Self.Language" />
           <EntitySet Name="LanguageLevels" EntityType="Self.LanguageLevel" />
           <EntitySet Name="Lessons" EntityType="Self.Lesson" />
