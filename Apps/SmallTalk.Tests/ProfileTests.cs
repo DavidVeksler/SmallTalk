@@ -1,0 +1,29 @@
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SmallTalk.Data;
+
+namespace SmallTalk.Tests
+{
+    [TestClass]
+    public class ProfileTests
+    {
+        [TestMethod]
+        public void CanCreateProfileForStudent()
+        {
+            var profile = new Profile();
+
+            profile.Name = "Johhny Cash";
+
+            using (var db = new SmallTalkDB())
+            {
+                db.Profiles.Add(profile);
+
+                db.SaveChanges();
+
+            }
+
+            Assert.IsTrue(profile != null);
+
+        }
+    }
+}

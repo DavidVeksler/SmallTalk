@@ -16,7 +16,6 @@ namespace SmallTalk.Data
             StudentProgresses = new HashSet<StudentProgress>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
 
         public string Name { get; set; }

@@ -8,13 +8,14 @@ namespace SmallTalk.Data
     public partial class SmallTalkDB : DbContext
     {
         public SmallTalkDB()
-            : base("name=SmallTalkDB")
+            : base("SmallTalkDB")
         {
         }
 
         public virtual DbSet<Language> Languages { get; set; }
         public virtual DbSet<LanguageLevel> LanguageLevels { get; set; }
         public virtual DbSet<Lesson> Lessons { get; set; }
+        public virtual DbSet<LessonRating> LessonRatings { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<Profile> Profiles { get; set; }
         public virtual DbSet<StudentProgress> StudentProgresses { get; set; }
@@ -39,6 +40,10 @@ namespace SmallTalk.Data
             modelBuilder.Entity<LanguageLevel>()
                 .Property(e => e.CEFRLevel)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Lesson>()
+                .HasOptional(e => e.LessonRating)
+                .WithRequired(e => e.Lesson);
 
             modelBuilder.Entity<Location>()
                 .Property(e => e.PostalCode)

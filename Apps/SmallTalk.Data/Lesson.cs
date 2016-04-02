@@ -9,7 +9,6 @@ namespace SmallTalk.Data
     [Table("Lesson")]
     public partial class Lesson
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
 
         public int? StudentId { get; set; }
@@ -24,9 +23,9 @@ namespace SmallTalk.Data
 
         public bool? IsLessonOpened { get; set; }
 
-        public DateTime? DateCreated { get; set; }
-
         public int? UnitId { get; set; }
+
+        public DateTime? DateCreated { get; set; }
 
         public virtual Location Location { get; set; }
 
@@ -35,5 +34,7 @@ namespace SmallTalk.Data
         public virtual Profile Profile1 { get; set; }
 
         public virtual Unit Unit { get; set; }
+
+        public virtual LessonRating LessonRating { get; set; }
     }
 }

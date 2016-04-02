@@ -16,9 +16,9 @@ namespace SmallTalk.Data
             Lessons1 = new HashSet<Lesson>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
 
+        [Required]
         public string UserName { get; set; }
 
         public string PasswordHash { get; set; }
@@ -26,7 +26,9 @@ namespace SmallTalk.Data
         [Required]
         public string Name { get; set; }
 
-        public int? BirthYear { get; set; }
+        public bool? IsStudent { get; set; }
+
+        public short? BirthYear { get; set; }
 
         [StringLength(10)]
         public string Gender { get; set; }
