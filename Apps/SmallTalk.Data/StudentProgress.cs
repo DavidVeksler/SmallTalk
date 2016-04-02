@@ -9,7 +9,7 @@ namespace SmallTalk.Data
     [Table("StudentProgress")]
     public partial class StudentProgress
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
 
         public int? UnitId { get; set; }

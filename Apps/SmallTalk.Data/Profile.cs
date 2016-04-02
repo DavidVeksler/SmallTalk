@@ -16,7 +16,7 @@ namespace SmallTalk.Data
             Lessons1 = new HashSet<Lesson>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
 
         public string UserName { get; set; }

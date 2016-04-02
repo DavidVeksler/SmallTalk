@@ -16,7 +16,7 @@ namespace SmallTalk.Data
             Profiles1 = new HashSet<Profile>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
 
         [Required]
