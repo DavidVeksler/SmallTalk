@@ -13,6 +13,7 @@ namespace SmallTalk.Tests
             var profile = new Profile();
 
             profile.Name = "Johhny Cash";
+            profile.UserName = "JohhnyCash";
 
             using (var db = new SmallTalkDB())
             {
