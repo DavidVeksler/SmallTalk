@@ -20,6 +20,7 @@ namespace SmallTalk.Data
             this.Lessons = new HashSet<Lesson>();
             this.Lessons1 = new HashSet<Lesson>();
             this.LocationPreferences = new HashSet<LocationPreference>();
+            this.StudentProgresses = new HashSet<StudentProgress>();
         }
     
         public int id { get; set; }
@@ -47,5 +48,7 @@ namespace SmallTalk.Data
         public virtual ICollection<Lesson> Lessons1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LocationPreference> LocationPreferences { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StudentProgress> StudentProgresses { get; set; }
     }
 }

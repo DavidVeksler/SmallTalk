@@ -12,6 +12,7 @@ using SmallTalk.Data;
 
 namespace SmallTalk.Web.Controllers
 {
+    [RoutePrefix("api/profile")]
     public class ProfileAPIController : ApiController
     {
         private SmallTalkEntities db = new SmallTalkEntities();
@@ -23,6 +24,7 @@ namespace SmallTalk.Web.Controllers
         //}
 
         // GET: api/ProfileAPI/5
+        // http://localhost:1667/api/profileAPI/1
         [ResponseType(typeof(Profile))]
         public IHttpActionResult GetProfile(int id)
         {
@@ -35,11 +37,29 @@ namespace SmallTalk.Web.Controllers
             return Ok(profile);
         }
 
-        [Route("profile/{id}/progress")]
-        [ResponseType(typeof(List<StudentProgress>))]
+        // /profileapi/1/progress
+        //http://localhost:1667/api/profile/1/progress
+        [Route("{id}/progress")]
+      //  [ResponseType(typeof(List<StudentProgress>))]
         public IHttpActionResult GetAcademicProgress(int id)
         {
-            throw new NotImplementedException();
+            var progress = db.StudentProgresses.Where(sp=> sp.ProfileId == id);
+            if (!progress.Any())
+            {
+                return NotFound();
+            }
+
+            var lessonProgress = progress.Select(s => new
+            {
+                s.id,
+                s.ProfileId,
+                s.LessonId,
+                s.StudyDate
+            });
+
+            return Ok(lessonProgress);
+
+
         }
 
         // Update Profile

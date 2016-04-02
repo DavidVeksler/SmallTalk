@@ -12,14 +12,18 @@ using SmallTalk.Data;
 
 namespace SmallTalk.Web.Controllers
 {
+    [RoutePrefix("api/rating")]
     public class RatingAPIController : ApiController
     {
         private SmallTalkEntities db = new SmallTalkEntities();
 
         // GET: api/RatingAPI
-        public IQueryable<LessonRating> GetLessonRatings()
+        // http://localhost:1667/api/rating/1/history
+        [Route("{id}/history")]
+        public IQueryable<LessonRating> GetLessonRatingsForProfile(int id)
         {
-            return db.LessonRatings;
+            var ratings = db.LessonRatings.Where(r => r.Lesson.StudentId == id);
+            return ratings.Select(r=> r);
         }
 
         // GET: api/RatingAPI/5

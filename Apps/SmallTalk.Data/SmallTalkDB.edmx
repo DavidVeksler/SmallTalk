@@ -96,6 +96,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProfileId" Type="int" />
           <Property Name="UnitId" Type="int" />
           <Property Name="LessonId" Type="int" />
           <Property Name="StudyDate" Type="datetime" />
@@ -231,6 +232,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_StudentProgress_Profile">
+          <End Role="Profile" Type="Self.Profile" Multiplicity="0..1" />
+          <End Role="StudentProgress" Type="Self.StudentProgress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="StudentProgress">
+              <PropertyRef Name="ProfileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_StudentProgress_Unit">
           <End Role="Unit" Type="Self.Unit" Multiplicity="0..1" />
           <End Role="StudentProgress" Type="Self.StudentProgress" Multiplicity="*" />
@@ -292,6 +305,10 @@
           <AssociationSet Name="FK_Profile_LanguageLevel" Association="Self.FK_Profile_LanguageLevel">
             <End Role="LanguageLevel" EntitySet="LanguageLevel" />
             <End Role="Profile" EntitySet="Profile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentProgress_Profile" Association="Self.FK_StudentProgress_Profile">
+            <End Role="Profile" EntitySet="Profile" />
+            <End Role="StudentProgress" EntitySet="StudentProgress" />
           </AssociationSet>
           <AssociationSet Name="FK_StudentProgress_Unit" Association="Self.FK_StudentProgress_Unit">
             <End Role="Unit" EntitySet="Unit" />
@@ -396,6 +413,7 @@
           <NavigationProperty Name="Lessons" Relationship="Self.FK_Lesson_Profile" FromRole="Profile" ToRole="Lesson" />
           <NavigationProperty Name="Lessons1" Relationship="Self.FK_Lesson_Profile1" FromRole="Profile" ToRole="Lesson" />
           <NavigationProperty Name="LocationPreferences" Relationship="SmallTalkModel.FK_LocationPreference_Profile" FromRole="Profile" ToRole="LocationPreference" />
+          <NavigationProperty Name="StudentProgresses" Relationship="SmallTalkModel.FK_StudentProgress_Profile" FromRole="Profile" ToRole="StudentProgress" />
         </EntityType>
         <EntityType Name="StudentProgress">
           <Key>
@@ -407,6 +425,8 @@
           <Property Name="StudyDate" Type="DateTime" Precision="3" />
           <Property Name="DateCreated" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Unit" Relationship="Self.FK_StudentProgress_Unit" FromRole="StudentProgress" ToRole="Unit" />
+          <Property Name="ProfileId" Type="Int32" />
+          <NavigationProperty Name="Profile" Relationship="SmallTalkModel.FK_StudentProgress_Profile" FromRole="StudentProgress" ToRole="Profile" />
         </EntityType>
         <EntityType Name="Unit">
           <Key>
@@ -582,6 +602,10 @@
             <End Role="Profile" EntitySet="Profiles" />
             <End Role="LocationPreference" EntitySet="LocationPreferences" />
           </AssociationSet>
+          <AssociationSet Name="FK_StudentProgress_Profile" Association="SmallTalkModel.FK_StudentProgress_Profile">
+            <End Role="Profile" EntitySet="Profiles" />
+            <End Role="StudentProgress" EntitySet="StudentProgresses" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="LocationPreference">
           <Key>
@@ -613,6 +637,18 @@
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="LocationPreference">
+              <PropertyRef Name="ProfileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentProgress_Profile">
+          <End Type="SmallTalkModel.Profile" Role="Profile" Multiplicity="0..1" />
+          <End Type="SmallTalkModel.StudentProgress" Role="StudentProgress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="StudentProgress">
               <PropertyRef Name="ProfileId" />
             </Dependent>
           </ReferentialConstraint>
@@ -710,6 +746,7 @@
           <EntitySetMapping Name="StudentProgresses">
             <EntityTypeMapping TypeName="SmallTalkModel.StudentProgress">
               <MappingFragment StoreEntitySet="StudentProgress">
+                <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="UnitId" ColumnName="UnitId" />
                 <ScalarProperty Name="LessonId" ColumnName="LessonId" />

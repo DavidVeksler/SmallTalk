@@ -19,7 +19,9 @@ namespace SmallTalk.Data
         public Nullable<int> LessonId { get; set; }
         public Nullable<System.DateTime> StudyDate { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
+        public Nullable<int> ProfileId { get; set; }
     
         public virtual Unit Unit { get; set; }
+        public virtual Profile Profile { get; set; }
     }
 }
