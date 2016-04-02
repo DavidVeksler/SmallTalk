@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallTalk.Tests", "SmallTal
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallTalk.Web", "SmallTalk.Web\SmallTalk.Web.csproj", "{7F07B1A0-4299-4979-8099-2D30DE5F6E75}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallTalk.Data", "SmallTalk.Data\SmallTalk.Data.csproj", "{CB0CA780-0A0E-42BB-91BD-F710FDF592C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallTalk.Domain", "SmallTalk.Domain\SmallTalk.Domain.csproj", "{EBDE9C30-BC42-46DE-A886-5467104E43BB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{7F07B1A0-4299-4979-8099-2D30DE5F6E75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F07B1A0-4299-4979-8099-2D30DE5F6E75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F07B1A0-4299-4979-8099-2D30DE5F6E75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB0CA780-0A0E-42BB-91BD-F710FDF592C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB0CA780-0A0E-42BB-91BD-F710FDF592C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB0CA780-0A0E-42BB-91BD-F710FDF592C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB0CA780-0A0E-42BB-91BD-F710FDF592C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBDE9C30-BC42-46DE-A886-5467104E43BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBDE9C30-BC42-46DE-A886-5467104E43BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBDE9C30-BC42-46DE-A886-5467104E43BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBDE9C30-BC42-46DE-A886-5467104E43BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
