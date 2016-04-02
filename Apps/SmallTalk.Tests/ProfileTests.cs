@@ -10,10 +10,16 @@ namespace SmallTalk.Tests
         [TestMethod]
         public void CanCreateProfileForStudent()
         {
-            var profile = new Profile();
+            var profile = new Profile
+            {
+                Name = "Johhny Cash",
+                UserName = "JohhnyCash",
+                BirthYear = 1985,
+                AboutMe = "About me...",
+                Gender = "M",
+                PhotoUrl = 
+            };
 
-            profile.Name = "Johhny Cash";
-            profile.UserName = "JohhnyCash";
 
             using (var db = new SmallTalkEntities())
             {
