@@ -12,14 +12,13 @@ namespace SmallTalk.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class StudentProgress
+    public partial class LocationPreference
     {
         public int id { get; set; }
-        public Nullable<int> UnitId { get; set; }
-        public Nullable<int> LessonId { get; set; }
-        public Nullable<System.DateTime> StudyDate { get; set; }
-        public Nullable<System.DateTime> DateCreated { get; set; }
+        public Nullable<int> LocationId { get; set; }
+        public Nullable<int> ProfileId { get; set; }
     
-        public virtual Unit Unit { get; set; }
+        public virtual Location Location { get; set; }
+        public virtual Profile Profile { get; set; }
     }
 }

@@ -1,0 +1,764 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SmallTalkModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="LocalName" Type="nvarchar(max)" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LanguageLevel">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" />
+          <Property Name="CEFRLevel" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Lesson">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentId" Type="int" />
+          <Property Name="MentorId" Type="int" />
+          <Property Name="LocationId" Type="int" />
+          <Property Name="MeetingTime" Type="datetime" />
+          <Property Name="IsCancelled" Type="bit" />
+          <Property Name="IsLessonOpened" Type="bit" />
+          <Property Name="UnitId" Type="int" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LessonRating">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LessonId" Type="int" />
+          <Property Name="MentorRating" Type="int" />
+          <Property Name="StudentRating" Type="int" />
+          <Property Name="ContentMasteryRating" Type="int" />
+          <Property Name="IsFlagged" Type="bit" />
+          <Property Name="MentorReview" Type="nvarchar(max)" />
+          <Property Name="StudentReview" Type="nvarchar(max)" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="IsFeature" Type="bit" />
+          <Property Name="Address1" Type="nvarchar(max)" />
+          <Property Name="PostalCode" Type="varchar(max)" />
+          <Property Name="TimesUsed" Type="int" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LocationPreference">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LocationId" Type="int" />
+          <Property Name="ProfileId" Type="int" />
+        </EntityType>
+        <EntityType Name="Profile">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsStudent" Type="bit" />
+          <Property Name="BirthYear" Type="smallint" />
+          <Property Name="Gender" Type="nchar" MaxLength="10" />
+          <Property Name="PhotoUrl" Type="nvarchar(max)" />
+          <Property Name="NativeLanguage" Type="int" />
+          <Property Name="LearningLanguage" Type="int" />
+          <Property Name="AboutMe" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="varchar(max)" />
+          <Property Name="LanguageLevelId" Type="int" />
+          <Property Name="Availability" Type="nvarchar(max)" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="StudentProgress">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UnitId" Type="int" />
+          <Property Name="LessonId" Type="int" />
+          <Property Name="StudyDate" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="URL" Type="nvarchar" MaxLength="500" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_Lesson_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
+          <End Role="Lesson" Type="Self.Lesson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Lesson">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lesson_Profile">
+          <End Role="Profile" Type="Self.Profile" Multiplicity="0..1" />
+          <End Role="Lesson" Type="Self.Lesson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Lesson">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lesson_Profile1">
+          <End Role="Profile" Type="Self.Profile" Multiplicity="0..1" />
+          <End Role="Lesson" Type="Self.Lesson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Lesson">
+              <PropertyRef Name="MentorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lesson_Unit">
+          <End Role="Unit" Type="Self.Unit" Multiplicity="0..1" />
+          <End Role="Lesson" Type="Self.Lesson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unit">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Lesson">
+              <PropertyRef Name="UnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LessonRating_Lesson">
+          <End Role="Lesson" Type="Self.Lesson" Multiplicity="1" />
+          <End Role="LessonRating" Type="Self.LessonRating" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Lesson">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LessonRating">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LocationPreference_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
+          <End Role="LocationPreference" Type="Self.LocationPreference" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LocationPreference">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LocationPreference_Profile">
+          <End Role="Profile" Type="Self.Profile" Multiplicity="0..1" />
+          <End Role="LocationPreference" Type="Self.LocationPreference" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LocationPreference">
+              <PropertyRef Name="ProfileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Profile_Language">
+          <End Role="Language" Type="Self.Language" Multiplicity="0..1" />
+          <End Role="Profile" Type="Self.Profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Profile">
+              <PropertyRef Name="NativeLanguage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Profile_Language1">
+          <End Role="Language" Type="Self.Language" Multiplicity="0..1" />
+          <End Role="Profile" Type="Self.Profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Profile">
+              <PropertyRef Name="LearningLanguage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Profile_LanguageLevel">
+          <End Role="LanguageLevel" Type="Self.LanguageLevel" Multiplicity="0..1" />
+          <End Role="Profile" Type="Self.Profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LanguageLevel">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Profile">
+              <PropertyRef Name="LanguageLevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentProgress_Unit">
+          <End Role="Unit" Type="Self.Unit" Multiplicity="0..1" />
+          <End Role="StudentProgress" Type="Self.StudentProgress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unit">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="StudentProgress">
+              <PropertyRef Name="UnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SmallTalkModelStoreContainer">
+          <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LanguageLevel" EntityType="Self.LanguageLevel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lesson" EntityType="Self.Lesson" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LessonRating" EntityType="Self.LessonRating" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LocationPreference" EntityType="Self.LocationPreference" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Profile" EntityType="Self.Profile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentProgress" EntityType="Self.StudentProgress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Unit" EntityType="Self.Unit" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Lesson_Location" Association="Self.FK_Lesson_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Lesson" EntitySet="Lesson" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lesson_Profile" Association="Self.FK_Lesson_Profile">
+            <End Role="Profile" EntitySet="Profile" />
+            <End Role="Lesson" EntitySet="Lesson" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lesson_Profile1" Association="Self.FK_Lesson_Profile1">
+            <End Role="Profile" EntitySet="Profile" />
+            <End Role="Lesson" EntitySet="Lesson" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lesson_Unit" Association="Self.FK_Lesson_Unit">
+            <End Role="Unit" EntitySet="Unit" />
+            <End Role="Lesson" EntitySet="Lesson" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LessonRating_Lesson" Association="Self.FK_LessonRating_Lesson">
+            <End Role="Lesson" EntitySet="Lesson" />
+            <End Role="LessonRating" EntitySet="LessonRating" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LocationPreference_Location" Association="Self.FK_LocationPreference_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="LocationPreference" EntitySet="LocationPreference" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LocationPreference_Profile" Association="Self.FK_LocationPreference_Profile">
+            <End Role="Profile" EntitySet="Profile" />
+            <End Role="LocationPreference" EntitySet="LocationPreference" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profile_Language" Association="Self.FK_Profile_Language">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="Profile" EntitySet="Profile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profile_Language1" Association="Self.FK_Profile_Language1">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="Profile" EntitySet="Profile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profile_LanguageLevel" Association="Self.FK_Profile_LanguageLevel">
+            <End Role="LanguageLevel" EntitySet="LanguageLevel" />
+            <End Role="Profile" EntitySet="Profile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentProgress_Unit" Association="Self.FK_StudentProgress_Unit">
+            <End Role="Unit" EntitySet="Unit" />
+            <End Role="StudentProgress" EntitySet="StudentProgress" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SmallTalkModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LocalName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Profiles" Relationship="Self.FK_Profile_Language" FromRole="Language" ToRole="Profile" />
+          <NavigationProperty Name="Profiles1" Relationship="Self.FK_Profile_Language1" FromRole="Language" ToRole="Profile" />
+        </EntityType>
+        <EntityType Name="LanguageLevel">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CEFRLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Profiles" Relationship="Self.FK_Profile_LanguageLevel" FromRole="LanguageLevel" ToRole="Profile" />
+        </EntityType>
+        <EntityType Name="Lesson">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentId" Type="Int32" />
+          <Property Name="MentorId" Type="Int32" />
+          <Property Name="LocationId" Type="Int32" />
+          <Property Name="MeetingTime" Type="DateTime" Precision="3" />
+          <Property Name="IsCancelled" Type="Boolean" />
+          <Property Name="IsLessonOpened" Type="Boolean" />
+          <Property Name="UnitId" Type="Int32" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Location" Relationship="Self.FK_Lesson_Location" FromRole="Lesson" ToRole="Location" />
+          <NavigationProperty Name="Profile" Relationship="Self.FK_Lesson_Profile" FromRole="Lesson" ToRole="Profile" />
+          <NavigationProperty Name="Profile1" Relationship="Self.FK_Lesson_Profile1" FromRole="Lesson" ToRole="Profile" />
+          <NavigationProperty Name="Unit" Relationship="Self.FK_Lesson_Unit" FromRole="Lesson" ToRole="Unit" />
+          <NavigationProperty Name="LessonRating" Relationship="Self.FK_LessonRating_Lesson" FromRole="Lesson" ToRole="LessonRating" />
+        </EntityType>
+        <EntityType Name="LessonRating">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LessonId" Type="Int32" />
+          <Property Name="MentorRating" Type="Int32" />
+          <Property Name="StudentRating" Type="Int32" />
+          <Property Name="ContentMasteryRating" Type="Int32" />
+          <Property Name="IsFlagged" Type="Boolean" />
+          <Property Name="MentorReview" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StudentReview" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Lesson" Relationship="Self.FK_LessonRating_Lesson" FromRole="LessonRating" ToRole="Lesson" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsFeature" Type="Boolean" />
+          <Property Name="Address1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TimesUsed" Type="Int32" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Lessons" Relationship="Self.FK_Lesson_Location" FromRole="Location" ToRole="Lesson" />
+          <NavigationProperty Name="LocationPreferences" Relationship="SmallTalkModel.FK_LocationPreference_Location" FromRole="Location" ToRole="LocationPreference" />
+        </EntityType>
+        <EntityType Name="Profile">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsStudent" Type="Boolean" />
+          <Property Name="BirthYear" Type="Int16" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="PhotoUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NativeLanguage" Type="Int32" />
+          <Property Name="LearningLanguage" Type="Int32" />
+          <Property Name="AboutMe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LanguageLevelId" Type="Int32" />
+          <Property Name="Availability" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Language" Relationship="Self.FK_Profile_Language" FromRole="Profile" ToRole="Language" />
+          <NavigationProperty Name="Language1" Relationship="Self.FK_Profile_Language1" FromRole="Profile" ToRole="Language" />
+          <NavigationProperty Name="LanguageLevel" Relationship="Self.FK_Profile_LanguageLevel" FromRole="Profile" ToRole="LanguageLevel" />
+          <NavigationProperty Name="Lessons" Relationship="Self.FK_Lesson_Profile" FromRole="Profile" ToRole="Lesson" />
+          <NavigationProperty Name="Lessons1" Relationship="Self.FK_Lesson_Profile1" FromRole="Profile" ToRole="Lesson" />
+          <NavigationProperty Name="LocationPreferences" Relationship="SmallTalkModel.FK_LocationPreference_Profile" FromRole="Profile" ToRole="LocationPreference" />
+        </EntityType>
+        <EntityType Name="StudentProgress">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UnitId" Type="Int32" />
+          <Property Name="LessonId" Type="Int32" />
+          <Property Name="StudyDate" Type="DateTime" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Unit" Relationship="Self.FK_StudentProgress_Unit" FromRole="StudentProgress" ToRole="Unit" />
+        </EntityType>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="URL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Lessons" Relationship="Self.FK_Lesson_Unit" FromRole="Unit" ToRole="Lesson" />
+          <NavigationProperty Name="StudentProgresses" Relationship="Self.FK_StudentProgress_Unit" FromRole="Unit" ToRole="StudentProgress" />
+        </EntityType>
+        <Association Name="FK_Profile_Language">
+          <End Role="Language" Type="Self.Language" Multiplicity="0..1" />
+          <End Role="Profile" Type="Self.Profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Profile">
+              <PropertyRef Name="NativeLanguage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Profile_Language1">
+          <End Role="Language" Type="Self.Language" Multiplicity="0..1" />
+          <End Role="Profile" Type="Self.Profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Profile">
+              <PropertyRef Name="LearningLanguage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Profile_LanguageLevel">
+          <End Role="LanguageLevel" Type="Self.LanguageLevel" Multiplicity="0..1" />
+          <End Role="Profile" Type="Self.Profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LanguageLevel">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Profile">
+              <PropertyRef Name="LanguageLevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lesson_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
+          <End Role="Lesson" Type="Self.Lesson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Lesson">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lesson_Profile">
+          <End Role="Profile" Type="Self.Profile" Multiplicity="0..1" />
+          <End Role="Lesson" Type="Self.Lesson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Lesson">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lesson_Profile1">
+          <End Role="Profile" Type="Self.Profile" Multiplicity="0..1" />
+          <End Role="Lesson" Type="Self.Lesson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Lesson">
+              <PropertyRef Name="MentorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lesson_Unit">
+          <End Role="Unit" Type="Self.Unit" Multiplicity="0..1" />
+          <End Role="Lesson" Type="Self.Lesson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unit">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Lesson">
+              <PropertyRef Name="UnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LessonRating_Lesson">
+          <End Role="Lesson" Type="Self.Lesson" Multiplicity="1" />
+          <End Role="LessonRating" Type="Self.LessonRating" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Lesson">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LessonRating">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentProgress_Unit">
+          <End Role="Unit" Type="Self.Unit" Multiplicity="0..1" />
+          <End Role="StudentProgress" Type="Self.StudentProgress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unit">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="StudentProgress">
+              <PropertyRef Name="UnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SmallTalkEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Languages" EntityType="Self.Language" />
+          <EntitySet Name="LanguageLevels" EntityType="Self.LanguageLevel" />
+          <EntitySet Name="Lessons" EntityType="Self.Lesson" />
+          <EntitySet Name="LessonRatings" EntityType="Self.LessonRating" />
+          <EntitySet Name="Locations" EntityType="Self.Location" />
+          <EntitySet Name="Profiles" EntityType="Self.Profile" />
+          <EntitySet Name="StudentProgresses" EntityType="Self.StudentProgress" />
+          <EntitySet Name="Units" EntityType="Self.Unit" />
+          <AssociationSet Name="FK_Profile_Language" Association="Self.FK_Profile_Language">
+            <End Role="Language" EntitySet="Languages" />
+            <End Role="Profile" EntitySet="Profiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profile_Language1" Association="Self.FK_Profile_Language1">
+            <End Role="Language" EntitySet="Languages" />
+            <End Role="Profile" EntitySet="Profiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profile_LanguageLevel" Association="Self.FK_Profile_LanguageLevel">
+            <End Role="LanguageLevel" EntitySet="LanguageLevels" />
+            <End Role="Profile" EntitySet="Profiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lesson_Location" Association="Self.FK_Lesson_Location">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Lesson" EntitySet="Lessons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lesson_Profile" Association="Self.FK_Lesson_Profile">
+            <End Role="Profile" EntitySet="Profiles" />
+            <End Role="Lesson" EntitySet="Lessons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lesson_Profile1" Association="Self.FK_Lesson_Profile1">
+            <End Role="Profile" EntitySet="Profiles" />
+            <End Role="Lesson" EntitySet="Lessons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lesson_Unit" Association="Self.FK_Lesson_Unit">
+            <End Role="Unit" EntitySet="Units" />
+            <End Role="Lesson" EntitySet="Lessons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LessonRating_Lesson" Association="Self.FK_LessonRating_Lesson">
+            <End Role="Lesson" EntitySet="Lessons" />
+            <End Role="LessonRating" EntitySet="LessonRatings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentProgress_Unit" Association="Self.FK_StudentProgress_Unit">
+            <End Role="Unit" EntitySet="Units" />
+            <End Role="StudentProgress" EntitySet="StudentProgresses" />
+          </AssociationSet>
+          <EntitySet Name="LocationPreferences" EntityType="SmallTalkModel.LocationPreference" />
+          <AssociationSet Name="FK_LocationPreference_Location" Association="SmallTalkModel.FK_LocationPreference_Location">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="LocationPreference" EntitySet="LocationPreferences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LocationPreference_Profile" Association="SmallTalkModel.FK_LocationPreference_Profile">
+            <End Role="Profile" EntitySet="Profiles" />
+            <End Role="LocationPreference" EntitySet="LocationPreferences" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="LocationPreference">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LocationId" Type="Int32" />
+          <Property Name="ProfileId" Type="Int32" />
+          <NavigationProperty Name="Location" Relationship="SmallTalkModel.FK_LocationPreference_Location" FromRole="LocationPreference" ToRole="Location" />
+          <NavigationProperty Name="Profile" Relationship="SmallTalkModel.FK_LocationPreference_Profile" FromRole="LocationPreference" ToRole="Profile" />
+        </EntityType>
+        <Association Name="FK_LocationPreference_Location">
+          <End Type="SmallTalkModel.Location" Role="Location" Multiplicity="0..1" />
+          <End Type="SmallTalkModel.LocationPreference" Role="LocationPreference" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LocationPreference">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LocationPreference_Profile">
+          <End Type="SmallTalkModel.Profile" Role="Profile" Multiplicity="0..1" />
+          <End Type="SmallTalkModel.LocationPreference" Role="LocationPreference" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LocationPreference">
+              <PropertyRef Name="ProfileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SmallTalkModelStoreContainer" CdmEntityContainer="SmallTalkEntities">
+          <EntitySetMapping Name="Languages">
+            <EntityTypeMapping TypeName="SmallTalkModel.Language">
+              <MappingFragment StoreEntitySet="Language">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LocalName" ColumnName="LocalName" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LanguageLevels">
+            <EntityTypeMapping TypeName="SmallTalkModel.LanguageLevel">
+              <MappingFragment StoreEntitySet="LanguageLevel">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CEFRLevel" ColumnName="CEFRLevel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lessons">
+            <EntityTypeMapping TypeName="SmallTalkModel.Lesson">
+              <MappingFragment StoreEntitySet="Lesson">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="MentorId" ColumnName="MentorId" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="MeetingTime" ColumnName="MeetingTime" />
+                <ScalarProperty Name="IsCancelled" ColumnName="IsCancelled" />
+                <ScalarProperty Name="IsLessonOpened" ColumnName="IsLessonOpened" />
+                <ScalarProperty Name="UnitId" ColumnName="UnitId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LessonRatings">
+            <EntityTypeMapping TypeName="SmallTalkModel.LessonRating">
+              <MappingFragment StoreEntitySet="LessonRating">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="LessonId" ColumnName="LessonId" />
+                <ScalarProperty Name="MentorRating" ColumnName="MentorRating" />
+                <ScalarProperty Name="StudentRating" ColumnName="StudentRating" />
+                <ScalarProperty Name="ContentMasteryRating" ColumnName="ContentMasteryRating" />
+                <ScalarProperty Name="IsFlagged" ColumnName="IsFlagged" />
+                <ScalarProperty Name="MentorReview" ColumnName="MentorReview" />
+                <ScalarProperty Name="StudentReview" ColumnName="StudentReview" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locations">
+            <EntityTypeMapping TypeName="SmallTalkModel.Location">
+              <MappingFragment StoreEntitySet="Location">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsFeature" ColumnName="IsFeature" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="TimesUsed" ColumnName="TimesUsed" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Profiles">
+            <EntityTypeMapping TypeName="SmallTalkModel.Profile">
+              <MappingFragment StoreEntitySet="Profile">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IsStudent" ColumnName="IsStudent" />
+                <ScalarProperty Name="BirthYear" ColumnName="BirthYear" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="PhotoUrl" ColumnName="PhotoUrl" />
+                <ScalarProperty Name="NativeLanguage" ColumnName="NativeLanguage" />
+                <ScalarProperty Name="LearningLanguage" ColumnName="LearningLanguage" />
+                <ScalarProperty Name="AboutMe" ColumnName="AboutMe" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="LanguageLevelId" ColumnName="LanguageLevelId" />
+                <ScalarProperty Name="Availability" ColumnName="Availability" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentProgresses">
+            <EntityTypeMapping TypeName="SmallTalkModel.StudentProgress">
+              <MappingFragment StoreEntitySet="StudentProgress">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="UnitId" ColumnName="UnitId" />
+                <ScalarProperty Name="LessonId" ColumnName="LessonId" />
+                <ScalarProperty Name="StudyDate" ColumnName="StudyDate" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Units">
+            <EntityTypeMapping TypeName="SmallTalkModel.Unit">
+              <MappingFragment StoreEntitySet="Unit">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LocationPreferences">
+            <EntityTypeMapping TypeName="SmallTalkModel.LocationPreference">
+              <MappingFragment StoreEntitySet="LocationPreference">
+                <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

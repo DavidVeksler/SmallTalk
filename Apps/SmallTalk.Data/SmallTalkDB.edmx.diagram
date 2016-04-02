@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d39b143be4014bed8e5a2fe1a7e7c995" Name="Diagram1">
+        <EntityTypeShape EntityType="SmallTalkModel.Language" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmallTalkModel.LanguageLevel" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmallTalkModel.Lesson" Width="1.5" PointX="5.25" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmallTalkModel.LessonRating" Width="1.5" PointX="7.5" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmallTalkModel.Location" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmallTalkModel.Profile" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmallTalkModel.StudentProgress" Width="1.5" PointX="5.25" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmallTalkModel.Unit" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
+        <AssociationConnector Association="SmallTalkModel.FK_Profile_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="SmallTalkModel.FK_Profile_Language1" ManuallyRouted="false" />
+        <AssociationConnector Association="SmallTalkModel.FK_Profile_LanguageLevel" ManuallyRouted="false" />
+        <AssociationConnector Association="SmallTalkModel.FK_Lesson_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="SmallTalkModel.FK_Lesson_Profile" ManuallyRouted="false" />
+        <AssociationConnector Association="SmallTalkModel.FK_Lesson_Profile1" ManuallyRouted="false" />
+        <AssociationConnector Association="SmallTalkModel.FK_Lesson_Unit" ManuallyRouted="false" />
+        <AssociationConnector Association="SmallTalkModel.FK_LessonRating_Lesson" ManuallyRouted="false" />
+        <AssociationConnector Association="SmallTalkModel.FK_StudentProgress_Unit" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SmallTalkModel.LocationPreference" Width="1.5" PointX="5.25" PointY="7.625" />
+        <AssociationConnector Association="SmallTalkModel.FK_LocationPreference_Location" />
+        <AssociationConnector Association="SmallTalkModel.FK_LocationPreference_Profile" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

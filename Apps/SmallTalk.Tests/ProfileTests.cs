@@ -15,7 +15,7 @@ namespace SmallTalk.Tests
             profile.Name = "Johhny Cash";
             profile.UserName = "JohhnyCash";
 
-            using (var db = new SmallTalkDB())
+            using (var db = new SmallTalkEntities())
             {
                 db.Profiles.Add(profile);
 

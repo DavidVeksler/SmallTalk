@@ -14,13 +14,13 @@ namespace SmallTalk.Web.Controllers
 {
     public class ProfileAPIController : ApiController
     {
-        private SmallTalkDB db = new SmallTalkDB();
+        private SmallTalkEntities db = new SmallTalkEntities();
 
-        // GET: api/ProfileAPI
-        public IQueryable<Profile> GetProfiles()
-        {
-            return db.Profiles;
-        }
+        //// GET: api/ProfileAPI
+        //public IQueryable<Profile> GetProfiles()
+        //{
+        //    return db.Profiles;
+        //}
 
         // GET: api/ProfileAPI/5
         [ResponseType(typeof(Profile))]
@@ -35,6 +35,14 @@ namespace SmallTalk.Web.Controllers
             return Ok(profile);
         }
 
+        [Route("profile/{id}/progress")]
+        [ResponseType(typeof(List<StudentProgress>))]
+        public IHttpActionResult GetAcademicProgress(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        // Update Profile
         // PUT: api/ProfileAPI/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutProfile(int id, Profile profile)
@@ -70,6 +78,7 @@ namespace SmallTalk.Web.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        // CreateProfile
         // POST: api/ProfileAPI
         [ResponseType(typeof(Profile))]
         public IHttpActionResult PostProfile(Profile profile)
@@ -85,21 +94,21 @@ namespace SmallTalk.Web.Controllers
             return CreatedAtRoute("DefaultApi", new { id = profile.id }, profile);
         }
 
-        // DELETE: api/ProfileAPI/5
-        [ResponseType(typeof(Profile))]
-        public IHttpActionResult DeleteProfile(int id)
-        {
-            Profile profile = db.Profiles.Find(id);
-            if (profile == null)
-            {
-                return NotFound();
-            }
+        //// DELETE: api/ProfileAPI/5
+        //[ResponseType(typeof(Profile))]
+        //public IHttpActionResult DeleteProfile(int id)
+        //{
+        //    Profile profile = db.Profiles.Find(id);
+        //    if (profile == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            db.Profiles.Remove(profile);
-            db.SaveChanges();
+        //    db.Profiles.Remove(profile);
+        //    db.SaveChanges();
 
-            return Ok(profile);
-        }
+        //    return Ok(profile);
+        //}
 
         protected override void Dispose(bool disposing)
         {
