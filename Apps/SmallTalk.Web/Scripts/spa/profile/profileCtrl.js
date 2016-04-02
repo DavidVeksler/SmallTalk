@@ -9,7 +9,7 @@
 		
 		$scope.loading = true;
 		
-		$http.get('api/profileapi/1').success(function(data){
+		$http.get('/api/profileapi/1').success(function(data){
 			
 			$scope.profile = data,
 			$scope.loading = false;
