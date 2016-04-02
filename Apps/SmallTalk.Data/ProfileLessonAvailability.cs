@@ -16,8 +16,8 @@ namespace SmallTalk.Data
     {
         public int id { get; set; }
         public int ProfileId { get; set; }
-        public string DayOfWeek { get; set; }
-        public string TimeOfDay { get; set; }
+        public int DayOfWeek { get; set; }
+        public int TimeOfDay { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
     
         public virtual Profile Profile { get; set; }

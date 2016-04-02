@@ -8,15 +8,15 @@ namespace SmallTalk.Web.Models
 
     public class Availability
     {
-        public AvailabilityTime Time { get; set; }
+        public AvailabilityTime TimeOfDay { get; set; }
         public DayOfWeek DayOfWeek { get; set; }
     }
 
-    public class AvailabilityTime
-{
-        public bool Morning;
-        public bool Afternoon;
-        public bool Evening;
+    public enum AvailabilityTime
+    {
+        Morning,
+        Afternoon,
+        Evening
     }
 
     //public enum DayOfWeek

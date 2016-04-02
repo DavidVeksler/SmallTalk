@@ -98,8 +98,8 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProfileId" Type="int" Nullable="false" />
-          <Property Name="DayOfWeek" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="TimeOfDay" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="DayOfWeek" Type="int" Nullable="false" />
+          <Property Name="TimeOfDay" Type="int" Nullable="false" />
           <Property Name="DateCreated" Type="datetime" />
         </EntityType>
         <EntityType Name="StudentProgress">
@@ -694,8 +694,8 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProfileId" Type="Int32" Nullable="false" />
-          <Property Name="DayOfWeek" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="TimeOfDay" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="DayOfWeek" Type="Int32" Nullable="false" />
+          <Property Name="TimeOfDay" Type="Int32" Nullable="false" />
           <Property Name="DateCreated" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Profile" Relationship="SmallTalkModel.FK_ProfileLessonAvailability_Profile" FromRole="ProfileLessonAvailability" ToRole="Profile" />
         </EntityType>

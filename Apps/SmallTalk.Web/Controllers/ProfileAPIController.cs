@@ -82,8 +82,8 @@ namespace SmallTalk.Web.Controllers
             {
                 var a = new Availability()
                 {
-                    DayOfWeek = (DayOfWeek) Enum.Parse(typeof (DayOfWeek), t.DayOfWeek),
-                    Time = (AvailabilityTime) Enum.Parse(typeof (AvailabilityTime), t.TimeOfDay)
+                    DayOfWeek = (DayOfWeek) t.DayOfWeek,
+                    TimeOfDay = (AvailabilityTime) t.TimeOfDay
                 };
 
                 slots.Add(a);

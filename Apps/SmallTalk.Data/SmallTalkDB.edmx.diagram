@@ -5,14 +5,14 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="d39b143be4014bed8e5a2fe1a7e7c995" Name="Diagram1">
-        <EntityTypeShape EntityType="SmallTalkModel.Language" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SmallTalkModel.LanguageLevel" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SmallTalkModel.Lesson" Width="1.5" PointX="5.25" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SmallTalkModel.LessonRating" Width="1.5" PointX="7.5" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SmallTalkModel.Location" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SmallTalkModel.Profile" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SmallTalkModel.StudentProgress" Width="1.5" PointX="5.25" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SmallTalkModel.Unit" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmallTalkModel.Language" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmallTalkModel.LanguageLevel" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmallTalkModel.Lesson" Width="1.5" PointX="5.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmallTalkModel.LessonRating" Width="1.5" PointX="7.5" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmallTalkModel.Location" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmallTalkModel.Profile" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmallTalkModel.StudentProgress" Width="1.5" PointX="8.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmallTalkModel.Unit" Width="1.5" PointX="6" PointY="2.875" IsExpanded="true" />
         <AssociationConnector Association="SmallTalkModel.FK_Profile_Language" ManuallyRouted="false" />
         <AssociationConnector Association="SmallTalkModel.FK_Profile_Language1" ManuallyRouted="false" />
         <AssociationConnector Association="SmallTalkModel.FK_Profile_LanguageLevel" ManuallyRouted="false" />
@@ -22,11 +22,11 @@
         <AssociationConnector Association="SmallTalkModel.FK_Lesson_Unit" ManuallyRouted="false" />
         <AssociationConnector Association="SmallTalkModel.FK_LessonRating_Lesson" ManuallyRouted="false" />
         <AssociationConnector Association="SmallTalkModel.FK_StudentProgress_Unit" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="SmallTalkModel.LocationPreference" Width="1.5" PointX="5.25" PointY="7.625" />
+        <EntityTypeShape EntityType="SmallTalkModel.LocationPreference" Width="1.5" PointX="8.25" PointY="7" />
         <AssociationConnector Association="SmallTalkModel.FK_LocationPreference_Location" />
         <AssociationConnector Association="SmallTalkModel.FK_LocationPreference_Profile" />
         <AssociationConnector Association="SmallTalkModel.FK_StudentProgress_Profile" />
-        <EntityTypeShape EntityType="SmallTalkModel.ProfileLessonAvailability" Width="1.5" PointX="5.25" PointY="15.875" />
+        <EntityTypeShape EntityType="SmallTalkModel.ProfileLessonAvailability" Width="1.5" PointX="5.25" PointY="10.875" />
         <AssociationConnector Association="SmallTalkModel.FK_ProfileLessonAvailability_Profile" />
       </Diagram>
     </edmx:Diagrams>

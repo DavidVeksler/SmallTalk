@@ -10,14 +10,33 @@ namespace SmallTalk.Tests
         [TestMethod]
         public void CanCreateProfileForStudent()
         {
+            //var profile = new Profile
+            //{
+            //    Name = "Adnan al-Kuds",
+            //    UserName = "AdnanAlKuds",
+            //    BirthYear = 1985,
+            //    AboutMe = "",
+            //    Gender = "F",
+            //    PhotoUrl =  "/Uploads/2.png",
+            //    NativeLanguage = 2,
+            //    LearningLanguage = 1,
+            //    PhoneNumber =  "404-386-2918",
+            //    LanguageLevelId = 1,
+            //};
+
             var profile = new Profile
             {
-                Name = "Johhny Cash",
-                UserName = "JohhnyCash",
-                BirthYear = 1985,
-                AboutMe = "About me...",
-                Gender = "M",
-                PhotoUrl = 
+                Name = "Sarah Ahmed",
+                UserName = "Akbar",
+                BirthYear = 1980,
+                AboutMe = "",
+                Gender = "F",
+                PhotoUrl = "/Uploads/9.png",
+                NativeLanguage = 1,
+                LearningLanguage = 1,
+                PhoneNumber = "404-387-2918",
+                LanguageLevelId = 1,
+                IsStudent = false
             };
 
 
