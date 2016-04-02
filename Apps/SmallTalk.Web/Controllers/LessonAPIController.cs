@@ -12,14 +12,27 @@ using SmallTalk.Data;
 
 namespace SmallTalk.Web.Controllers
 {
+    [RoutePrefix("api/lesson")]
     public class LessonAPIController : ApiController
     {
         private SmallTalkEntities db = new SmallTalkEntities();
 
-        // GET: api/LessonAPI
-        public IQueryable<Lesson> GetLessons()
+
+        // GET: api/RatingAPI
+        // http://localhost:1667/api/rating/1/history
+        [Route("{id}/history")]
+        public IHttpActionResult GetLessonsForProfile(int id)
         {
-            return db.Lessons;
+            var lessons = db.Lessons.Where(r => r.StudentId == id || r.MentorId == id);
+
+            var model = lessons.Select(r => new
+            {
+                LocationId = r.Location.id,
+                MeetingTime = r.MeetingTime,
+                UnitId = r.UnitId
+            });
+
+            return Ok(model);
         }
 
         // GET: api/LessonAPI/5
@@ -83,6 +96,28 @@ namespace SmallTalk.Web.Controllers
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = lesson.id }, lesson);
+        }
+
+        // confirm lesson:
+        [Route("{id}/confirm")]
+        public IHttpActionResult Confirm(int id, bool isMentor = false, bool isStudent = false)
+        {
+            Lesson lesson = db.Lessons.Find(id);
+            if (lesson == null)
+            {
+                return NotFound();
+            }
+
+            if (isMentor)
+                lesson.MentorHasApproved = true;
+
+            if (isStudent)
+                lesson.StudentHasApproved = true;
+
+            
+            db.SaveChanges();
+
+            return Ok(lesson);
         }
 
         // DELETE: api/LessonAPI/5
