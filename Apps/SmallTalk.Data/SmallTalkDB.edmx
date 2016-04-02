@@ -34,6 +34,8 @@
           <Property Name="IsCancelled" Type="bit" />
           <Property Name="IsLessonOpened" Type="bit" />
           <Property Name="UnitId" Type="int" />
+          <Property Name="StudentHasApproved" Type="bit" />
+          <Property Name="MentorHasApproved" Type="bit" />
           <Property Name="DateCreated" Type="datetime" />
         </EntityType>
         <EntityType Name="LessonRating">
@@ -88,7 +90,16 @@
           <Property Name="AboutMe" Type="nvarchar(max)" />
           <Property Name="PhoneNumber" Type="varchar(max)" />
           <Property Name="LanguageLevelId" Type="int" />
-          <Property Name="Availability" Type="nvarchar(max)" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ProfileLessonAvailability">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProfileId" Type="int" Nullable="false" />
+          <Property Name="DayOfWeek" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="TimeOfDay" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="DateCreated" Type="datetime" />
         </EntityType>
         <EntityType Name="StudentProgress">
@@ -232,6 +243,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProfileLessonAvailability_Profile">
+          <End Role="Profile" Type="Self.Profile" Multiplicity="1" />
+          <End Role="ProfileLessonAvailability" Type="Self.ProfileLessonAvailability" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProfileLessonAvailability">
+              <PropertyRef Name="ProfileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_StudentProgress_Profile">
           <End Role="Profile" Type="Self.Profile" Multiplicity="0..1" />
           <End Role="StudentProgress" Type="Self.StudentProgress" Multiplicity="*" />
@@ -264,6 +287,7 @@
           <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LocationPreference" EntityType="Self.LocationPreference" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Profile" EntityType="Self.Profile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProfileLessonAvailability" EntityType="Self.ProfileLessonAvailability" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StudentProgress" EntityType="Self.StudentProgress" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Unit" EntityType="Self.Unit" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Lesson_Location" Association="Self.FK_Lesson_Location">
@@ -305,6 +329,10 @@
           <AssociationSet Name="FK_Profile_LanguageLevel" Association="Self.FK_Profile_LanguageLevel">
             <End Role="LanguageLevel" EntitySet="LanguageLevel" />
             <End Role="Profile" EntitySet="Profile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProfileLessonAvailability_Profile" Association="Self.FK_ProfileLessonAvailability_Profile">
+            <End Role="Profile" EntitySet="Profile" />
+            <End Role="ProfileLessonAvailability" EntitySet="ProfileLessonAvailability" />
           </AssociationSet>
           <AssociationSet Name="FK_StudentProgress_Profile" Association="Self.FK_StudentProgress_Profile">
             <End Role="Profile" EntitySet="Profile" />
@@ -357,6 +385,8 @@
           <NavigationProperty Name="Profile1" Relationship="Self.FK_Lesson_Profile1" FromRole="Lesson" ToRole="Profile" />
           <NavigationProperty Name="Unit" Relationship="Self.FK_Lesson_Unit" FromRole="Lesson" ToRole="Unit" />
           <NavigationProperty Name="LessonRating" Relationship="Self.FK_LessonRating_Lesson" FromRole="Lesson" ToRole="LessonRating" />
+          <Property Name="StudentHasApproved" Type="Boolean" />
+          <Property Name="MentorHasApproved" Type="Boolean" />
         </EntityType>
         <EntityType Name="LessonRating">
           <Key>
@@ -414,6 +444,7 @@
           <NavigationProperty Name="Lessons1" Relationship="Self.FK_Lesson_Profile1" FromRole="Profile" ToRole="Lesson" />
           <NavigationProperty Name="LocationPreferences" Relationship="SmallTalkModel.FK_LocationPreference_Profile" FromRole="Profile" ToRole="LocationPreference" />
           <NavigationProperty Name="StudentProgresses" Relationship="SmallTalkModel.FK_StudentProgress_Profile" FromRole="Profile" ToRole="StudentProgress" />
+          <NavigationProperty Name="ProfileLessonAvailabilities" Relationship="SmallTalkModel.FK_ProfileLessonAvailability_Profile" FromRole="Profile" ToRole="ProfileLessonAvailability" />
         </EntityType>
         <EntityType Name="StudentProgress">
           <Key>
@@ -606,6 +637,11 @@
             <End Role="Profile" EntitySet="Profiles" />
             <End Role="StudentProgress" EntitySet="StudentProgresses" />
           </AssociationSet>
+          <EntitySet Name="ProfileLessonAvailabilities" EntityType="SmallTalkModel.ProfileLessonAvailability" />
+          <AssociationSet Name="FK_ProfileLessonAvailability_Profile" Association="SmallTalkModel.FK_ProfileLessonAvailability_Profile">
+            <End Role="Profile" EntitySet="Profiles" />
+            <End Role="ProfileLessonAvailability" EntitySet="ProfileLessonAvailabilities" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="LocationPreference">
           <Key>
@@ -653,6 +689,29 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ProfileLessonAvailability">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProfileId" Type="Int32" Nullable="false" />
+          <Property Name="DayOfWeek" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="TimeOfDay" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Profile" Relationship="SmallTalkModel.FK_ProfileLessonAvailability_Profile" FromRole="ProfileLessonAvailability" ToRole="Profile" />
+        </EntityType>
+        <Association Name="FK_ProfileLessonAvailability_Profile">
+          <End Type="SmallTalkModel.Profile" Role="Profile" Multiplicity="1" />
+          <End Type="SmallTalkModel.ProfileLessonAvailability" Role="ProfileLessonAvailability" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProfileLessonAvailability">
+              <PropertyRef Name="ProfileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -681,6 +740,8 @@
           <EntitySetMapping Name="Lessons">
             <EntityTypeMapping TypeName="SmallTalkModel.Lesson">
               <MappingFragment StoreEntitySet="Lesson">
+                <ScalarProperty Name="MentorHasApproved" ColumnName="MentorHasApproved" />
+                <ScalarProperty Name="StudentHasApproved" ColumnName="StudentHasApproved" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="StudentId" ColumnName="StudentId" />
                 <ScalarProperty Name="MentorId" ColumnName="MentorId" />
@@ -738,7 +799,6 @@
                 <ScalarProperty Name="AboutMe" ColumnName="AboutMe" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="LanguageLevelId" ColumnName="LanguageLevelId" />
-                <ScalarProperty Name="Availability" ColumnName="Availability" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -771,6 +831,17 @@
               <MappingFragment StoreEntitySet="LocationPreference">
                 <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
                 <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProfileLessonAvailabilities">
+            <EntityTypeMapping TypeName="SmallTalkModel.ProfileLessonAvailability">
+              <MappingFragment StoreEntitySet="ProfileLessonAvailability">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="TimeOfDay" ColumnName="TimeOfDay" />
+                <ScalarProperty Name="DayOfWeek" ColumnName="DayOfWeek" />
+                <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

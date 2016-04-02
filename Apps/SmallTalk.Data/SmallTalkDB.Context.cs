@@ -34,5 +34,6 @@ namespace SmallTalk.Data
         public virtual DbSet<StudentProgress> StudentProgresses { get; set; }
         public virtual DbSet<Unit> Units { get; set; }
         public virtual DbSet<LocationPreference> LocationPreferences { get; set; }
+        public virtual DbSet<ProfileLessonAvailability> ProfileLessonAvailabilities { get; set; }
     }
 }

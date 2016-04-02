@@ -23,6 +23,8 @@ namespace SmallTalk.Data
         public Nullable<bool> IsLessonOpened { get; set; }
         public Nullable<int> UnitId { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
+        public Nullable<bool> StudentHasApproved { get; set; }
+        public Nullable<bool> MentorHasApproved { get; set; }
     
         public virtual Location Location { get; set; }
         public virtual Profile Profile { get; set; }

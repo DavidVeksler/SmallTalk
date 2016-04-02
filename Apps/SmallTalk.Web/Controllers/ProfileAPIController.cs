@@ -17,12 +17,6 @@ namespace SmallTalk.Web.Controllers
     {
         private SmallTalkEntities db = new SmallTalkEntities();
 
-        //// GET: api/ProfileAPI
-        //public IQueryable<Profile> GetProfiles()
-        //{
-        //    return db.Profiles;
-        //}
-
         // GET: api/ProfileAPI/5
         // http://localhost:1667/api/profileAPI/1
         [ResponseType(typeof(Profile))]
@@ -35,6 +29,58 @@ namespace SmallTalk.Web.Controllers
             }
 
             return Ok(profile);
+        }
+
+        // CreateProfile
+        // POST: api/ProfileAPI
+        [ResponseType(typeof(Profile))]
+        public IHttpActionResult PostProfile(Profile profile)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.Profiles.Add(profile);
+            db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { id = profile.id }, profile);
+        }
+
+        // POST: http://localhost:1667/api/profile/1/availability/
+        [HttpPost]
+        [ResponseType(typeof(Profile))]
+        [Route("{id}/availability")]
+        public IHttpActionResult UpdateAvailability(List<ProfileLessonAvailability> times)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            int profileId = times.First().ProfileId;
+            db.ProfileLessonAvailabilities.RemoveRange(
+                db.ProfileLessonAvailabilities.Where(p => p.ProfileId == profileId));
+
+            db.ProfileLessonAvailabilities.AddRange(times);
+            db.SaveChanges();
+
+            return Ok();
+        }
+
+        [HttpGet]
+        [ResponseType(typeof(Profile))]
+        [Route("{id}/availability")]
+        public IHttpActionResult GetAvailability(int id)
+        {
+            var times = db.ProfileLessonAvailabilities.Where(p => p.ProfileId == id).ToList();
+
+            //times.ForEach(t =>
+            //{
+                
+            //})
+
+            return Ok();
         }
 
         // /profileapi/1/progress
@@ -98,21 +144,7 @@ namespace SmallTalk.Web.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // CreateProfile
-        // POST: api/ProfileAPI
-        [ResponseType(typeof(Profile))]
-        public IHttpActionResult PostProfile(Profile profile)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            db.Profiles.Add(profile);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = profile.id }, profile);
-        }
+        
 
         //// DELETE: api/ProfileAPI/5
         //[ResponseType(typeof(Profile))]

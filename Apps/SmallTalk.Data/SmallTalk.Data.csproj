@@ -72,6 +72,9 @@
     <Compile Include="Profile.cs">
       <DependentUpon>SmallTalkDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProfileLessonAvailability.cs">
+      <DependentUpon>SmallTalkDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SmallTalkDB.Context.cs">
       <AutoGen>True</AutoGen>

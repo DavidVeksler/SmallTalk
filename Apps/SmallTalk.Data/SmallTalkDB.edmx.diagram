@@ -26,6 +26,8 @@
         <AssociationConnector Association="SmallTalkModel.FK_LocationPreference_Location" />
         <AssociationConnector Association="SmallTalkModel.FK_LocationPreference_Profile" />
         <AssociationConnector Association="SmallTalkModel.FK_StudentProgress_Profile" />
+        <EntityTypeShape EntityType="SmallTalkModel.ProfileLessonAvailability" Width="1.5" PointX="5.25" PointY="15.875" />
+        <AssociationConnector Association="SmallTalkModel.FK_ProfileLessonAvailability_Profile" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
