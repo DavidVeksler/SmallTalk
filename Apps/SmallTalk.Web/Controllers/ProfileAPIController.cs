@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using SmallTalk.Data;
+using SmallTalk.Web.Models;
 
 namespace SmallTalk.Web.Controllers
 {
@@ -65,7 +66,7 @@ namespace SmallTalk.Web.Controllers
             db.ProfileLessonAvailabilities.AddRange(times);
             db.SaveChanges();
 
-            return Ok();
+            return Ok("");
         }
 
         [HttpGet]
@@ -75,12 +76,20 @@ namespace SmallTalk.Web.Controllers
         {
             var times = db.ProfileLessonAvailabilities.Where(p => p.ProfileId == id).ToList();
 
-            //times.ForEach(t =>
-            //{
-                
-            //})
+            var slots = new List<Availability>();
 
-            return Ok();
+            times.ForEach(t =>
+            {
+                var a = new Availability()
+                {
+                    DayOfWeek = (DayOfWeek) Enum.Parse(typeof (DayOfWeek), t.DayOfWeek),
+                    Time = (AvailabilityTime) Enum.Parse(typeof (AvailabilityTime), t.TimeOfDay)
+                };
+
+                slots.Add(a);
+            });
+
+            return Ok(slots);
         }
 
         // /profileapi/1/progress

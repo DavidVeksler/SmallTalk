@@ -8,27 +8,27 @@ namespace SmallTalk.Web.Models
 
     public class Availability
     {
-        public int ProfileId { get; set; }
-        public List<AvailabilityDay> Days { get; set; }
+        public AvailabilityTime Time { get; set; }
+        public DayOfWeek DayOfWeek { get; set; }
     }
 
-    public class AvailabilityDay
-    {
+    public class AvailabilityTime
+{
         public bool Morning;
         public bool Afternoon;
         public bool Evening;
     }
 
-    public enum DayOfWeek
-    {
-        Monday,
-        Tuesday,
-        Wednsday,
-        Thursday,
-        Friday,
-        Saturday,
-        Sunday
-    }
+    //public enum DayOfWeek
+    //{
+    //    Monday,
+    //    Tuesday,
+    //    Wednsday,
+    //    Thursday,
+    //    Friday,
+    //    Saturday,
+    //    Sunday
+    //}
 
     public enum TimeOfDay
     {

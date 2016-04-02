@@ -37,7 +37,6 @@ namespace SmallTalk.Data
         public string AboutMe { get; set; }
         public string PhoneNumber { get; set; }
         public Nullable<int> LanguageLevelId { get; set; }
-        public string Availability { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
     
         public virtual Language Language { get; set; }
