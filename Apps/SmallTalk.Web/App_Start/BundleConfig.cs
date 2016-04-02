@@ -28,7 +28,7 @@ namespace SmallTalk.Web
 						"~/Scripts/angular.min.js"));
 			
 			bundles.Add(new ScriptBundle("~/bundles/appjs").Include(
-						"~/Scripts/spa/profile/profileCtrl.js"));
+						"~/Scripts/spa/*.js"));
         }
     }
 }

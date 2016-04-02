@@ -4,8 +4,21 @@
 </div>
 <div class="row">
 
-    select language
+    @*select language
     select city
-    enter profile
+    enter profile*@
+
+
+    <div data-ng-controller="languageController" class="container">
+
+        <ul>
+            <li>{{language.id}}</li>
+            <li>{{language.Name}}</li>
+            <li>{{language.LocalName}}</li>
+        </ul>
+    </div>
+
 
 </div>
+
+

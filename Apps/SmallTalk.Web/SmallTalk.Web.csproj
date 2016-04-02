@@ -207,6 +207,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LanguageAPIController.cs" />
     <Compile Include="Controllers\LessonAPIController.cs" />
     <Compile Include="Controllers\LocationAPIController.cs" />
     <Compile Include="Controllers\ProfileAPIController.cs" />
@@ -1062,7 +1063,8 @@
     <Content Include="Scripts\ng-file-upload.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\spa\profile\profileCtrl.js" />
+    <Content Include="Scripts\spa\languageCtrl.js" />
+    <Content Include="Scripts\spa\profileCtrl.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
