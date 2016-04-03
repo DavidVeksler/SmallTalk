@@ -15,6 +15,41 @@ namespace SmallTalk.Web.Controllers
             return View();
         }
 
-        
+        public ActionResult ChooseRole()
+        {
+            return View();
+        }
+
+        public ActionResult ChooseMentor()
+        {
+            return View();
+        }
+
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        public ActionResult Lesson()
+        {
+            return View();
+        }
+
+        public ActionResult Availability()
+        {
+            return View();
+        }
+
+        public ActionResult Feedback()
+        {
+            return View();
+        }
+
+        public ActionResult LessonHistory()
+        {
+            return View();
+        }
+
+
     }
 }

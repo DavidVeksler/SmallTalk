@@ -1082,8 +1082,15 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Profile\Profile.cshtml" />
-    <Content Include="Views\Home\Index - Copy.cshtml" />
     <Content Include="Views\Profile\ProfileList.cshtml" />
+    <Content Include="Views\Home\ChooseRole.cshtml" />
+    <Content Include="Views\Home\Lesson.cshtml" />
+    <Content Include="Views\Home\ChooseMentor.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Home\BookLesson.cshtml" />
+    <Content Include="Views\Home\Feedback.cshtml" />
+    <Content Include="Views\Home\LessonHistory.cshtml" />
+    <Content Include="Views\Home\Availability.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

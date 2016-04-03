@@ -1,24 +1,64 @@
-﻿<div class="jumbotron">
-    <h1>Small Talk</h1>
-    <p class="lead">I am a:</p>
-</div>
-<div class="row">
+﻿@using SmallTalk.Web.Controllers
+@{
+    Layout = null;
+}
 
-    @*select language
-    select city
-    enter profile*@
+@{
+    var c = new LanguageAPIController();
+    var langs = c.GetLanguages();
+
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Registration</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/reg.css">
+</head>
 
 
-    <div data-ng-controller="languageController" class="container">
 
-        <ul>
-            <li>{{language.id}}</li>
-            <li>{{language.Name}}</li>
-            <li>{{language.LocalName}}</li>
-        </ul>
+<body>
+
+    <div class="container">
+        <div align="center">
+            <img height="120px" width="110px" src="/img/logo1.jpg">
+        </div>
+
+        <h1 class="form-signin-heading text-muted">Welcome to SmallTalk</h1>
+        @*<h3 class="form-signin-heading text-muted">Choose a language</h3>*@
+
+
+
+        <form class="form-signin">
+
+
+            <ul class="list-group">
+                @foreach (var l in langs)
+                {
+                    <li class="list-group-item">
+                        <a href="/Home/ChooseRole/">@l.LocalName</a>
+                    </li>
+                }
+
+            </ul>
+
+
+
+
+
+
+
+        </form>
     </div>
-
-
-</div>
-
-
+</body>
+</html>
