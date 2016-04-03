@@ -1,6 +1,8 @@
 # SmallTalk: a small way to break big barriers
 Small Talk Informal Language Learning App
 
+<a href="http://talk.fee-dev.org">Demo</a>
+
 ##App Design:
 
 * The SmallTalk platform has three parts: an API and a web-based UI for mobile phones, and a content management system (CMS) with lesson plans.
