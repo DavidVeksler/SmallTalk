@@ -11,6 +11,27 @@
 		<!-- Optional theme -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="css/reg.css">
+		<style>
+	    .dropdown {
+	        
+	    }
+
+	    .dropdown-content {
+	        display: none;
+	        position: absolute;
+	        background-color: #404040;
+	        width: 200%;
+	        max-width:50em;
+	        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+	        padding: 12px 16px;
+	        z-index: 1;
+			border-radius: 5%;
+	    }
+
+	    .dropdown:hover .dropdown-content {
+	        display: block;
+		}
+			</style>
 	</head>
 
 	<body>
@@ -21,15 +42,15 @@
 			<center><h1 class="form-signin-heading text-muted">Select a Topic!</h1></center>	
 			<div class="row" >
 				<div class="col-md-6">
-					<a><img src="img/tab1.jpg" alt="cat1"></a>	
-					<a><img src="img/tab2.jpg" alt="cat2"></a>
+					<span class="dropdown"><a><img src="img/tab1.jpg" alt="cat1"></a><span class="dropdown-content"> <p style="color:white; font-size:20px; font-weight:bold;">Click here for Food lessons!</p> </span></span>
+					<span class="dropdown"><a><img src="img/tab2.jpg" alt="cat2"></a><span class="dropdown-content">  <p style="color:white; font-size:20px; font-weight:bold;">Click here for Emergency lessons!</p> </span></span>
 				<div class="col-md-6">
-					<a><img src="img/tab3.jpg" alt="cat3"></a>
-					<a><img src="img/tab4.jpg" alt="cat4"></a>
+					<span class="dropdown"><a><img src="img/tab3.jpg" alt="cat3"></a><span class="dropdown-content">  <p style="color:white; font-size:20px; font-weight:bold;"> Click here for lessons on Greetings!</p></span></span>
+					<span class="dropdown"><a><img src="img/tab4.jpg" alt="cat4"></a><span class="dropdown-content">Business</span></span>
 				</div>
 				<div class="col-md-6">
-					<a><img src="img/tab5.jpg" alt="cat3"></a>
-					<a><img src="img/tab6.jpg" alt="cat4"></a>
+					<span class="dropdown"><a><img src="img/tab5.jpg" alt="cat3"></a><span class="dropdown-content"> <p style="color:white; font-size:20px; font-weight:bold;">Click here for Education</p></span></span>
+					<span class="dropdown"><a><img src="img/tab6.jpg" alt="cat4"></a><span class="dropdown-content"><p style="color:white; font-size:20px; font-weight:bold;">Transportation</p></span></span>
 				</div>
 			</div>
 		</div>
