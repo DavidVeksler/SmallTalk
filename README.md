@@ -8,11 +8,11 @@ Small Talk Informal Language Learning App
 * SmallTalk is designed to run mainly on smartphones.  The prototype is web-based, but a native app can talk to the same API.
 * The SmallTalk API/app is distinct from the English+Cultural lesson plan CMS.  Units of content in SmallTalk link to lesson plans by URL.
 * This database diagram shows the things the SmallTalk tracks:
-<img src="/Documentation/SmallTalkDatabase.png" />
+<img src="/Documentation/SmallTalkDatabase.png" style="width:50%" width="600" />
 
 ## User Flow Diagram
 
-<img src="Documentation/User%20Flow%20Diagram.png?raw=true" />
+<img src="Documentation/User%20Flow%20Diagram.png?raw=true" style="width:50%" />
 
 ## Key Concepts:
 * **Profile**:  students and mentors create a **profile** which have basic demographic and **availability** information
