@@ -1,56 +1,46 @@
-﻿<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Registration</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/css/reg.css">
+﻿@section scripts
+{
     <link rel="stylesheet" type="text/css" href="/css/card.css">
-</head>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="/css/findMentor.css" rel="stylesheet" />
 
-<body>
-   	<div id="fullscreen_bg" class="fullscreen_bg"/>
+    @*<script src="findMentor.js"></script>*@
+}
+
+<div id="fullscreen_bg" class="fullscreen_bg" />
 
 <div class="container">
 
-   <script src="findMentor.js"></script>
-   <center>
-     <h2 class="lbl">Choose a Mentor near you</h2>
-   </center>
-   <section class="profile">
-   	<!--	<input type="radio" id="contactBtn" name="otherBtn">
-   		<input type="radio" id="infoBtn" name="otherBtn">-->
-   		<label class="otherLabel contactLabel"  onclick="contactClick(this)">Contact</label>
-   		<label class="otherLabel infoLabel" onclick="infoClick(this)">Info</label>
+   
+    <center>
+        <h2 class="lbl">Choose a Mentor near you</h2>
+    </center>
+    <section class="profile">
+        <!--	<input type="radio" id="contactBtn" name="otherBtn">
+         <input type="radio" id="infoBtn" name="otherBtn">-->
+        <label class="otherLabel contactLabel" onclick="contactClick(this)">Contact</label>
+        <label class="otherLabel infoLabel" onclick="infoClick(this)">Info</label>
 
-   	<center>	<figure>
-   			<div class="front">
-   				<img src="https://pbs.twimg.com/profile_images/425933007283683328/CB8hDpdS_bigger.png" alt="">
-   			</div>
-   		</figure>
-   		<article class="info">
-   			<header class="name">Amy Rachel</header>
-   			<h5 class="job">Publix Manager</h5>
-   			<ul class="stats">
-   				<li style="margin-right: 2px;"><label>Average Rating:</label><p style="font-size:14px;">4.5</p></li>
-   				<li><label>Availability:</label><p style="font-size:14px;">M-W, Afternoons</p></li>
-				<li class="btn btn-primary btn-lg btn-block" style="width: 200px;"><label style="color:white;"></label><p style="font-size:12px; color:white; font-weight:bold;">Book lesson!</p></li>
+        <center>
+            <figure>
+                <div class="front">
+                    <img src="https://pbs.twimg.com/profile_images/425933007283683328/CB8hDpdS_bigger.png" alt="">
+                </div>
+            </figure>
+            <article class="info">
+                <header class="name">Amy Rachel</header>
+                <h5 class="job">Publix Manager</h5>
+                <ul class="stats">
+                    <li style="margin-right: 2px;"><label>Average Rating:</label><p style="font-size:14px;">4.5</p></li>
+                    <li><label>Availability:</label><p style="font-size:14px;">M-W, Afternoons</p></li>
+                    <li class="btn btn-primary btn-lg btn-block" style="width: 200px;"><label style="color:white;"></label><p style="font-size:12px; color:white; font-weight:bold;">Book lesson!</p></li>
 
-   			</ul>
-   		</article>
-   		<article class="contact">
-   			
-   		</article>
+                </ul>
+            </article>
+            <article class="contact"></article>
+        </center>
+    </section>
 </div>
 <!--<a class="btn btn-primary btn-lg btn-block" type="button" style="margin-top: 300px;">Book a Lesson!</a>-->
-</center>
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-</body>
-</html>
+  
+
