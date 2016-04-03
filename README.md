@@ -27,9 +27,8 @@ Small Talk Informal Language Learning App
 * **Language Level**: students indicate whether they are begginer, intermedia or advanced learners in their profile.
 
 ## Preview The Data
+* Demo: http://talk.fee-dev.org/
 * Profiles in the DB: http://talk.fee-dev.org/profile/
-* Lessons Scheduled: http://talk.fee-dev.org/lesson/
-
 
 ## API Documentation
 
