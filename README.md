@@ -11,16 +11,16 @@ Small Talk Informal Language Learning App
 <img src="/Documentation/SmallTalkDatabase.png" />
 
 ## Key Concepts:
-* Profile:  students and mentors create a **profile** which have basic demographic and **availability** information
-* Lesson: an appointment to meet on a specific date and **location** to discuss a **unit**
-* Unit:  a link to a lesson plan in an external CMS.  
-* StudentProgres: the history of units that a student has covered.   This helps mentors know what to cover next
-* Availability: a profile section with the days of week, and time of day (morning, afternoon, evening) that mentors and students can meet at.  
-* Location: a list of addresses to meet up.  They are curated by the client organization.  The app tracks how many times each location is used to recommend locations for lessons.
-* Lesson Rating: after each lesson, the student and teach are asked to rate each other.  There are two ratings: 
+* **Profile**:  students and mentors create a **profile** which have basic demographic and **availability** information
+* **Lesson**: an appointment to meet on a specific date and **location** to discuss a **unit**
+* **Unit**:  a link to a lesson plan in an external CMS.  
+* **Student Progress**: the history of units that a student has covered.   This helps mentors know what to cover next
+* **Availability**: a profile section with the days of week, and time of day (morning, afternoon, evening) that mentors and students can meet at, and a list of prefered locations.  
+* **Location**: a list of addresses to meet up.  They are curated by the client organization.  The app tracks how many times each location is used to recommend locations for lessons.
+* **Lesson Rating**: after each lesson, the student and mentor are asked to rate each other.  There are two ratings: 
   * **Content Mastery Rating**: how well the material was learned (1-4 stars).  This is used to help mentors in future lessons
   * **Mentor/Student Review**: feedback on the mentor/student (1-4).  Review use to highlight especially good or problematic students/mentors
-* Language Level: students indicate whether they are begginer, intermedia or advanced learners in their profile.
+* **Language Level**: students indicate whether they are begginer, intermedia or advanced learners in their profile.
 
 ## Preview The Data
 * Profiles in the DB: http://talk.fee-dev.org/profile/
