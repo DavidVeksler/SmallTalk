@@ -1,37 +1,58 @@
-﻿<!DOCTYPE html>
+﻿
+<div id="fullscreen_bg" class="fullscreen_bg" />
 
-<html>
+<div class="container">
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Registration</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <form class="form-signin">
+        <div class="input-group form-group">
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/css/reg.css">
-</head>
 
-<body>
-    <div id="fullscreen_bg" class="fullscreen_bg" />
+            <h1 class="form-signin-heading text-muted">Sign Up</h1>
 
-    <div class="container">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Name" required="required" autofocus="">
 
-        <form class="form-signin">
-            <h1 class="form-signin-heading text-muted">Registration</h1>
-            <input type="text" class="form-control" placeholder="Full Name" required="required" autofocus="">
-            <input type="password" class="form-control" placeholder="Password" required="required">
-            <input type="text" class="form-control" placeholder="ZIP code">
-            <a class="btn btn-lg btn-primary btn-block" type="submit" href="/Home/Availability/">
-                Next
-            </a>
-        </form>
+                <input type="email" class="form-control" placeholder="Email" required="required" autofocus="">
+                <input type="tel" class="form-control" placeholder="Phone Number" required="required" autofocus="">
 
-    </div>
+                <div class="input-group">
+                    <span class="label label-success">I am a:</span>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary">Man</button>
+                        <button type="button" class="btn btn-primary">Woman</button>
+                    </div>
+                </div>
+                <input type="password" class="form-control" placeholder="Password" required="required">
+                <input type="text" class="form-control" placeholder="zip/postal code">
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-</body>
-</html>
+
+                <input type="text" class="form-control" placeholder="Birth year">
+
+                <span class="label label-success">My English level is:</span>
+                <ul>
+                    <li class="list-group-item">Beginner</li>
+                    <li class="list-group-item">Intermediate</li>
+                    <li class="list-group-item">Advanced</li>
+                </ul>
+
+
+
+            </div>
+
+            <div class="input-group">
+
+                <span class="label label-success">Upload your photo:</span>
+                <input type="file" class="form-control" placeholder="Upload your photo" autofocus="">
+            </div>
+
+
+        </div>
+
+        <a class="btn btn-lg btn-primary btn-block" type="submit" href="/Home/Availability/">
+            Next
+        </a>
+    </form>
+</div>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>

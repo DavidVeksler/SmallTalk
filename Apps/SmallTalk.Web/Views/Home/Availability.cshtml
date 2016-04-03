@@ -1,75 +1,58 @@
-﻿<!DOCTYPE html>
-<html>
+﻿
+<div id="fullscreen_bg" class="fullscreen_bg" />
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Registration</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<div class="container">
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/css/reg.css">
-</head>
+    <form class="form-signin">
+        <h1 class="form-signin-heading text-muted">When are you free?</h1>
+        @*<h6>Availability</h6>*@
 
-<body>
-    <div id="fullscreen_bg" class="fullscreen_bg" />
+        <div class="form-group">
 
-    <div class="container">
-
-        <form class="form-signin">
-            <h1 class="form-signin-heading text-muted">When are you free?</h1>
-            @*<h6>Availability</h6>*@
-
-            <div class="form-group">
-
-                <label>Day of Week</label>
-                <select id="day" class="form-control">
-                    <option>Monday</option>
-                    <option>Tuesday</option>
-                    <option>Wednsday</option>
-                    <option>Thursday</option>
-                    <option>Friday</option>
-                    <option>Saturday</option>
-                    <option>Sunday</option>
-                </select>
-                <label>Time of Day</label>
-                <select id="time" class="form-control">
-                    <option>Morning</option>
-                    <option>Afternoon</option>
-                    <option>Evening</option>
-                </select>
-                <button id="add" class="btn-lg btn-primary btn-block" type="button" style="margin-top: 10px; margin-bottom: 10px;">Add</button>
+            <label>Day of Week</label>
+            <select id="day" class="form-control">
+                <option>Monday</option>
+                <option>Tuesday</option>
+                <option>Wednsday</option>
+                <option>Thursday</option>
+                <option>Friday</option>
+                <option>Saturday</option>
+                <option>Sunday</option>
+            </select>
+            <label>Time of Day</label>
+            <select id="time" class="form-control">
+                <option>Morning</option>
+                <option>Afternoon</option>
+                <option>Evening</option>
+            </select>
+            <button id="add" class="btn-lg btn-primary btn-block" type="button" style="margin-top: 10px; margin-bottom: 10px;">Add</button>
 
 
-            </div>
-            @*<p>you are available :</p>*@
-            <ul id="available" class="list-group"></ul>
-            <a id="next" class="btn btn-lg btn-primary btn-block" type="submit" style="display: none" href="/Home/ChooseMentor/">
-                Next
-            </a>
-        </form>
+        </div>
+        @*<p>you are available :</p>*@
+        <ul id="available" class="list-group"></ul>
+        <a id="next" class="btn btn-lg btn-primary btn-block" type="submit" style="display: none" href="/Home/ChooseMentor/">
+            Next
+        </a>
+    </form>
 
-    </div>
+</div>
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
+<script type="text/javascript">
+    $(document).ready(function () {
 
-            $("#add").click(function () {
-                var day = $("#day").find(":selected").text();
-                var time = $("#time").find(":selected").text();
+        $("#add").click(function () {
+            var day = $("#day").find(":selected").text();
+            var time = $("#time").find(":selected").text();
 
-                $("#available").append("<li class='list-group-item'>" + day + " " + time + "</li>");
+            $("#available").append("<li class='list-group-item'>" + day + " " + time + "</li>");
 
-                $("#next").show();
+            $("#next").show();
 
-            });
         });
-    </script>
-</body>
-</html>
+    });
+</script>

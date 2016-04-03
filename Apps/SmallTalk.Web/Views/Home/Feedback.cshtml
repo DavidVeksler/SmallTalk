@@ -1,5 +1,24 @@
 ﻿
-TODO FEEDBACL
 
+<div id="fullscreen_bg" class="fullscreen_bg"/>
 
-<button>Book Another Lesson</button>
+<center style="margin-top:170px;">
+    <div class="row lead">
+        <p style="color:white; font-size:25px; font-weight:bold;">Rate your mastery of the content:</p>
+        <div id="stars" class="starrr"></div>
+        You rated it <span id="count">0</span> star(s)
+    </div>
+    <div class="row lead">
+        <p style="color:white; font-size:25px; font-weight:bold;">Overall rating of your mentor:</p>
+        <div id="stars" class="starrr"></div>
+        You rated it <span id="count">0</span> star(s)
+    </div>
+    <a class="btn btn-primary btn-lg btn-block" type="button" href="/Home/LessonHistory/">Next</a>
+
+</center>
+
+@section scripts
+{
+    <script type="text/javascript" src="/css/ratings.js"></script>
+}
+
