@@ -49,4 +49,4 @@ Small Talk Informal Language Learning App
 ## TODO's
 * This prototype does not implement session security.
 * An administrative backend is not included.
-* A CMS for editing lesson plans is not include.  Out of the box, MediaWiki can be used to provide easy, collaborative content editing.
+* A CMS for editing lesson plans.  MediaWiki can be used to provide a ready-made collaborative content editing.
