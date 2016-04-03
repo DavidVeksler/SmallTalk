@@ -1,5 +1,5 @@
-# SmallTalk
-Small Talk Informal Language Learning App: a small way to break big barriers
+# SmallTalk: a small way to break big barriers
+Small Talk Informal Language Learning App
 
 ##App Design:
 
