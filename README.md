@@ -10,6 +10,18 @@ Small Talk Informal Language Learning App
 * This database diagram shows the things the SmallTalk tracks:
 <img src="/Documentation/SmallTalkDatabase.png" />
 
+## Key Concepts:
+* Profile:  students and mentors create a **profile** which have basic demographic and **availability** information
+* Lesson: an appointment to meet on a specific date and **location** to discuss a **unit**
+* Unit:  a link to a lesson plan in an external CMS.  
+* StudentProgres: the history of units that a student has covered.   This helps mentors know what to cover next
+* Availability: a profile section with the days of week, and time of day (morning, afternoon, evening) that mentors and students can meet at.  
+* Location: a list of addresses to meet up.  They are curated by the client organization.  The app tracks how many times each location is used to recommend locations for lessons.
+* Lesson Rating: after each lesson, the student and teach are asked to rate each other.  There are three fields: 
+  * **Content Master Rating**: how well the material was learned (1-4 stars).  This is used to help mentors in future lessons
+  * **Mentor/Student Review**: feedback on the mentor/student (1-4).  Review use to highlight especially good or problematic students/mentors
+  * 
+
 ## Preview The Data
 * Profiles in the DB: http://talk.fee-dev.org/profile/
 * Lessons Scheduled: http://talk.fee-dev.org/lesson/
