@@ -1,19 +1,78 @@
-﻿
-<body>
-		<div id="fullscreen_bg" class="fullscreen_bg"/>
-	  <center>
-	  <p style="color:white; font-weight:bold; margin-top:50px; font-size:50px;">Match!</p> <br> <p style="color:white; font-weight:bold; margin-top:30px; font-size:24px;">-Mentor Name- would like to be your mentor!</p> <br>
-	  <p style="color:white; font-weight:bold; margin-top:30px; font-size:24px;">Your lesson will be in:</p><label>location</label>
-	  <p style="color:white; font-weight:bold; margin-top:10px; margin-bottom: 0px; font-size:24px;">At </p>
-	  <label>time</label>
-	   
-	   
-	 
-	  <a class="btn btn-primary btn-lg btn-block" type="button" style="margin-top:50px;">Continue to unit lesson</a>
-      </center>
-	</div>
+﻿@using System.Linq
+@using SmallTalk.Data
+@{
+    var profileId = int.Parse(HttpContext.Current.Request.QueryString["profile"]);
+
+    var db = new SmallTalkEntities();
+    var profile = db.Profiles.SingleOrDefault(p => p.id == profileId);
 
 
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script> 
-	
+    var locations = @db.Locations.ToList();
+
+}
+
+<h1>Book Lesson</h1>
+
+
+<div class="text-center card" style="background-color: white;">
+
+
+    <div class="text-center" style="margin-left: 40%">
+        <img src="@profile.PhotoUrl" alt=""
+             style="width: 120px; max-height: 120px; border-radius: 15px; border: 1px solid black;" class="media-object" />
+    </div>
+
+
+    <h3>@(profile.Name) is your mentor</h3>
+
+
+
+    <h3>
+        Time:
+
+        <div class="form-group">
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+
+
+
+            </div>
+
+            <ul id="available" class="list-group"></ul>
+        </div>
+    </h3>
+
+    <h3>
+        Location:
+
+        <select>
+            @foreach (var location in locations)
+            {
+                <option>@location.Name</option>
+            }
+        </select>
+
+    </h3>
+
+
+    <a class="btn btn-primary btn-lg btn-block" type="button" style="margin-top: 50px;" href="/Home/Lesson/">Book Lesson</a>
+</div>
+
+@section scripts
+{
+    <script src="~/Content/moment-with-locales.js"></script>
+    <script src="/Content/bootstrap-datetimepicker.js"></script>
+
+
+
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker();
+        });
+    </script>
+}
