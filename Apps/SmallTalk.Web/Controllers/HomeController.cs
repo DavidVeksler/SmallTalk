@@ -50,6 +50,9 @@ namespace SmallTalk.Web.Controllers
             return View();
         }
 
-
+        public ActionResult BookLesson()
+        {
+            return View();
+        }
     }
 }

@@ -1,9 +1,15 @@
-﻿@section scripts
+﻿@using SmallTalk.Data
+@using SmallTalk.Web.Controllers
+@{
+    var db = new SmallTalkEntities();
+    var profiles = db.Profiles.Include("Language").Include("LanguageLevel").ToList();
+}
+
+@section scripts
 {
     <link rel="stylesheet" type="text/css" href="/css/card.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<link href="/css/findMentor.css" rel="stylesheet" />
-
+    @*<link href="/css/findMentor.css" rel="stylesheet"/>*@
     @*<script src="findMentor.js"></script>*@
 }
 
@@ -11,36 +17,85 @@
 
 <div class="container">
 
-   
-    <center>
-        <h2 class="lbl">Choose a Mentor near you</h2>
-    </center>
-    <section class="profile">
-        <!--	<input type="radio" id="contactBtn" name="otherBtn">
-         <input type="radio" id="infoBtn" name="otherBtn">-->
-        <label class="otherLabel contactLabel" onclick="contactClick(this)">Contact</label>
-        <label class="otherLabel infoLabel" onclick="infoClick(this)">Info</label>
 
-        <center>
-            <figure>
-                <div class="front">
-                    <img src="https://pbs.twimg.com/profile_images/425933007283683328/CB8hDpdS_bigger.png" alt="">
+
+    <h2 class="lbl text-center">Mentors Near You:</h2>
+
+
+    <ul class="list-group">
+
+        @foreach (var profile in profiles)
+        {
+            <li class="list-group-item">
+                <div class="media-left" style="float: left;">
+                    <img src="@profile.PhotoUrl" alt=""
+                         style="width: 120px; max-height: 120px; border-radius: 15px; border: 1px solid black;" class="media-object" />
                 </div>
-            </figure>
-            <article class="info">
-                <header class="name">Amy Rachel</header>
-                <h5 class="job">Publix Manager</h5>
-                <ul class="stats">
-                    <li style="margin-right: 2px;"><label>Average Rating:</label><p style="font-size:14px;">4.5</p></li>
-                    <li><label>Availability:</label><p style="font-size:14px;">M-W, Afternoons</p></li>
-                    <li class="btn btn-primary btn-lg btn-block" style="width: 200px;"><label style="color:white;"></label><p style="font-size:12px; color:white; font-weight:bold;">Book lesson!</p></li>
+                <div class="media-body panel panel-default">
+                   
 
-                </ul>
-            </article>
-            <article class="contact"></article>
-        </center>
-    </section>
+                        <h4 class="list-group-item-heading card-heading-header">@profile.Name</h4>
+                    <div>
+                        <label>About:</label>
+                        @profile.Gender
+                        @(DateTime.Now.Year - profile.BirthYear) years old
+                        @if (!String.IsNullOrWhiteSpace(profile.AboutMe))
+                        {
+                            <p>@profile.AboutMe</p>
+                        }
+                       
+                    </div>
+                        @*<div class="job">@(profile.IsStudent.HasValue ? "Student" : "Mentor")</div>*@
+
+                        <div style="margin-right: 2px;">
+                            <label>Average Rating:</label>
+                            <span style="font-size: 14px;">@(new Random().Next(0, 5))</span>
+                        </div>
+
+                        <div>
+                            <label>Availability:</label>
+                            <span style="font-size: 14px;">M-W, Afternoons</span>
+                        </div>
+                        <a class="btn btn-primary btn-lg btn-block" href="/Home/BookLesson/">Book Lesson!</a>
+
+                    
+                </div>
+
+                <div class="clear-fix clearfix"></div>
+
+            </li>
+
+
+            @*<div class="card" style="background-color: white;">
+                        <div style="float: left;">
+                            <div class="card-media">
+                                <img src="@profile.PhotoUrl" alt="Alternate Text" width="120px;" />
+                            </div>
+                        </div>
+                        <div class="card-heading" style="float:right">
+                            <div class="card-heading-header">@profile.Name</div>
+                            <div class="job">@(profile.IsStudent.HasValue ? "Student" : "Mentor")</div>
+                            <ul class="list-group">
+                                <li style="margin-right: 2px;">
+                                    <label>Average Rating:</label>
+                                    <p style="font-size: 14px;">@(new Random().Next(0,5))</p>
+                                </li>
+                                <li>
+                                    <label>Availability:</label>
+                                    <p style="font-size: 14px;">M-W, Afternoons</p>
+                                </li>
+                                <li class="btn btn-primary btn-lg btn-block" style="width: 200px;">
+                                    <label style="color: white;"></label>
+                                    <p style="color: white; font-size: 12px; font-weight: bold;"><a href="/Home/BookLesson/">Book Lesson!</a></p>
+                                </li>
+
+                            </ul>
+                        </div>
+                </div>*@
+        }
+
+    </ul>
+
+
 </div>
 <!--<a class="btn btn-primary btn-lg btn-block" type="button" style="margin-top: 300px;">Book a Lesson!</a>-->
-  
-
