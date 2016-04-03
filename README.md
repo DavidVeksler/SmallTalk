@@ -10,6 +10,10 @@ Small Talk Informal Language Learning App
 * This database diagram shows the things the SmallTalk tracks:
 <img src="/Documentation/SmallTalkDatabase.png" />
 
+## User Flow Diagram
+
+<img src="Documentation/User%20Flow%20Diagram.png?raw=true" />
+
 ## Key Concepts:
 * **Profile**:  students and mentors create a **profile** which have basic demographic and **availability** information
 * **Lesson**: an appointment to meet on a specific date and **location** to discuss a **unit**
