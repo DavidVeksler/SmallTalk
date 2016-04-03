@@ -29,7 +29,7 @@ Small Talk Informal Language Learning App
 
 ## API Documentation
 
-* Compplete API documentation: http://talk.fee-dev.org/Help
+* Complete API documentation: http://talk.fee-dev.org/Help
 * Each top-level object in the SmallTalk platform has a RESTful API.  For example, LessonAPI (/api/lesson)
 * Example API methods:
   * List of supported languages: http://talk.fee-dev.org/api/languageAPI/
