@@ -1,0 +1,28 @@
+# Managed by DavidVeksler/dependabot-fleet
+version: 2
+
+updates:
+  - package-ecosystem: "nuget"
+    directories:
+      - "/Apps/SmallTalk.Data"
+      - "/Apps/SmallTalk.Domain"
+      - "/Apps/SmallTalk.Tests"
+      - "/Apps/SmallTalk.Web"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "01:05"
+      timezone: "America/Denver"
+    open-pull-requests-limit: 5
+    groups:
+      non-major-updates:
+        applies-to: "version-updates"
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+      security-updates:
+        applies-to: "security-updates"
+        patterns:
+          - "*"
